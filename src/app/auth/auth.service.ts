@@ -17,13 +17,13 @@ export class AuthService {
 
   login(username: string, password: string) {
     return this.http.post<any>(`${this.serverUrl}/user/login`, {username: username, password: password})
-    .pipe(map(user => {
-        if (user && user.success) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      }),
-      catchError(this.handleError)
-    );
+      .pipe(map(res => {
+          if (res && res.success) {
+              localStorage.setItem('currentUser', JSON.stringify(res.data));
+          }
+        }),
+        catchError(this.handleError)
+      );
   }
 
   isLoggedIn() {
@@ -33,10 +33,10 @@ export class AuthService {
     return false;
   }
 
-  getAuthorizationToken() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    return currentUser.token;
-  }
+  // getAuthorizationToken() {
+  //   const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  //   return currentUser.token;
+  // }
 
   logout() {
     localStorage.removeItem('currentUser');

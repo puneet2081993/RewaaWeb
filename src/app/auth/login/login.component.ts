@@ -22,13 +22,16 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    console.log("asd");
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-
-    this.authService.logout();
+    if (this.authService.isLoggedIn()) {
+        const redirect = '/product/list';
+        this.router.navigate([redirect]);
+    }else{
+        this.loginForm = this.fb.group({
+          username: ['', Validators.required],
+          password: ['', Validators.required]
+        });
+        this.authService.logout();
+   }
   }
 
   get username() { return this.loginForm.get('username'); }
@@ -37,10 +40,11 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     this.authService.login(this.username.value, this.password.value).subscribe((data) => {
-       if (this.authService.isLoggedIn) {
-          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/admin';
+       if (this.authService.isLoggedIn()) {
+          const redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '/product/list';
           this.router.navigate([redirect]);
         } else {
+          //alert("Username or password is incorrect.");
           this.loginError = 'Username or password is incorrect.';
         }
       },
