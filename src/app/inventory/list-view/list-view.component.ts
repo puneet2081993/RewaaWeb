@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { combineAll } from 'rxjs/operators';
 import { InventoryService } from '../inventory.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class ListViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.invService.fetch().subscribe((data) => {
+      console.log(data);
       this.pdata = data;
     });
   }

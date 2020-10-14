@@ -19,7 +19,7 @@ export class ProductViewComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.invService.fetchByID(this.id).subscribe((data) => {
+    this.invService.fetch(this.id).subscribe((data) => {
       this.pdata = data;
     });
   }

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'product/:id', component: ProductViewComponent ,canActivate: [AuthGuard]},
   { path: 'product/edit/:id', component: CreateComponent,canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent},
+  { path: '**', component: LoginComponent },  // Wildcard route for a 404 page
 ];
 
 @NgModule({

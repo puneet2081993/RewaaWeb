@@ -1,8 +1,8 @@
 <!-- <h1> Add new Products </h1> -->
 <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label>Product Name</label>
-        <input type="text" formControlName="pname" class="form-control" placeholder="Product Name" required>
+        <label>Product name</label>
+        <input type="text" formControlName="pname" [value]="pdata.pname" class="form-control" placeholder="Product Name" required>
         <div *ngIf="pname.invalid && (pname.dirty || pname.touched)" class="error">
         <div *ngIf="pname.errors">
             Product Name is required.
@@ -11,7 +11,7 @@
     </div>
     <div class="form-group">
         <label>Product Type</label>
-        <input type="text" formControlName="ptype" class="form-control" placeholder="Product Type" required>
+        <input type="text" formControlName="ptype" [value]="pdata.ptype"  class="form-control" placeholder="Product Type" required>
         <div *ngIf="ptype.invalid && (ptype.dirty || ptype.touched)" class="error">
         <div *ngIf="ptype.errors">
             Product Type is required.
@@ -20,7 +20,7 @@
     </div>
     <div class="form-group">
         <label>Product Quantity</label>
-        <input type="text" formControlName="pqty" class="form-control" placeholder="Product Quantity" required>
+        <input type="number" formControlName="pqty" [value]="pdata.pqty"  name="pqty"  class="form-control" id="points" step="1" required>
         <div *ngIf="pqty.invalid && (pqty.dirty || pqty.touched)" class="error">
         <div *ngIf="pqty.errors">
             Product Quantity is required.
