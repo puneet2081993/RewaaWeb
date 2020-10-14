@@ -1,0 +1,6 @@
+<ul class="nav" *ngIf="isUserLogin">
+    <li><a routerLink="/product/list" >Home</a></li>
+    <li><a routerLink="/product/create" >Create</a></li>
+    <li style="float: right;"><a id="logout"(click)="authService.logout()" routerLink="/login" >Logout</a></li>
+</ul>
+<router-outlet></router-outlet>
