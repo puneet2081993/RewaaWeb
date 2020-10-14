@@ -1,0 +1,20 @@
+.form-group{
+    position: relative;
+    padding: 10px;    
+    font-size: 20px;
+}
+.form-group > input{
+    padding: 4px;    
+    font-size: 15px;
+    margin-left: 50px;
+}
+.form-group > button{
+    margin-left: 20px;
+}
+input{
+    width: 30%;
+}
+.error{
+    color:red;
+    font-size: 13px;
+}

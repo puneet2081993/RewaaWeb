@@ -1,0 +1,26 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+button{
+    float: right;
+    margin: 20px;
+    position: relative;
+}
+.page-header{
+    text-align: center;
+}
+.edit{
+    display:inline-block;
+    background-color: #EEEEEE;
+    padding: 8px 20px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:5px;
+    cursor:pointer;
+    margin-bottom: 20px;
+}
