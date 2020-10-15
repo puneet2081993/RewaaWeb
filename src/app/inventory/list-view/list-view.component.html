@@ -9,10 +9,10 @@
         <th>Updated At</th>
     </tr>
     <tr *ngFor="let p of pdata" >
-        <td> <input type="checkbox" (change)="checkbox(p.pid)" [(ngModel)]="p.isSelected"></td>
-        <td><a [routerLink]="['/product',p.pid]" target="_blank">{{p.pid}}</a></td>
-        <td>{{p.pname}}</td>
-        <td>{{p.ptype}}</td>
+        <td> <input type="checkbox" (change)="checkbox(p.productID)"></td>
+        <td><a [routerLink]="['/product',p.productID]" target="_blank">{{p.productID}}</a></td>
+        <td>{{p.productName}}</td>
+        <td>{{p.productType}}</td>
         <td>{{p.updated_at}}</td>
     </tr>
 </table>

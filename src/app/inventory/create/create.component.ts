@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
   returnUrl: string;
   error: {};
   productError: string;
-  pdata:any;
+  pdata = {};
   
   constructor(
     private fb: FormBuilder,
@@ -30,12 +30,11 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
   
-  //  if(this.id){
-  //     this.invService.fetch(this.id).subscribe((data) => {
-        this.pdata =  { "pname":'asd',"ptype":'asd',"pqty":1};
-        console.log(this.pdata);
-    //   });
-    // }
+    if(this.id){
+        this.invService.fetch(this.id).subscribe((data) => {
+        this.pdata = data[0];
+      });
+    }
     this.createProductForm = this.fb.group({
       pname: ['', Validators.required],
       ptype: ['', Validators.required],
@@ -58,22 +57,15 @@ export class CreateComponent implements OnInit {
     if(this.id){
       productData["pid"] = this.id;
       this.invService.update(productData).subscribe((data) => {
-        alert(data.msg);
+        alert("Product updated successfully");
       });
     }
     else{
       this.invService.create(productData).subscribe((data) => {
-        alert(data.msg);
+        alert("Product created successfully");
       });
     }
   }
   
-  deleteProduct(){
-    let confirmation = confirm("Are you sure you want to delete!");
-    if(confirmation){
-       this.invService.delete([this.id]).subscribe((data) => {
-            alert(data.msg);
-      });
-    }
-  }
+
 }

@@ -9,7 +9,7 @@ import { InventoryService } from '../inventory.service';
 })
 export class ProductViewComponent implements OnInit {
   id : string;
-  pdata = {};
+  pdata : {};
   
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +20,17 @@ export class ProductViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.invService.fetch(this.id).subscribe((data) => {
-      this.pdata = data;
+      this.pdata = data[0];
     });
+  }
+
+  deleteProduct(){
+    let confirmation = confirm("Are you sure you want to delete!");
+    if(confirmation){
+       this.invService.delete([this.id]).subscribe((data) => {
+          alert(data.changedRows+" products deleted successfully");
+      });
+    }
   }
 
 }
