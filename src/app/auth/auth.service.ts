@@ -18,8 +18,8 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http.post<any>(`${this.serverUrl}/user/login`, {username: username, password: password})
       .pipe(map(res => {
-          if (res && res.success) {
-              localStorage.setItem('currentUser', JSON.stringify(res.data));
+          if (res.length > 0) {
+              localStorage.setItem('currentUser', JSON.stringify(res[0]));
           }
         }),
         catchError(this.handleError)

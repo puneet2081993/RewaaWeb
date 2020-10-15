@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
   returnUrl: string;
   error: {};
   productError: string;
-  pdata:{}
+  pdata = {};
   
   constructor(
     private fb: FormBuilder,
@@ -29,9 +29,10 @@ export class CreateComponent implements OnInit {
     }
 
   ngOnInit() {
-   if(this.id){
-      this.invService.fetchByID(this.id).subscribe((data) => {
-        this.pdata = data;
+  
+    if(this.id){
+        this.invService.fetch(this.id).subscribe((data) => {
+        this.pdata = data[0];
       });
     }
     this.createProductForm = this.fb.group({
@@ -45,7 +46,6 @@ export class CreateComponent implements OnInit {
   get ptype() { return this.createProductForm.get('ptype'); }
   get pqty() { return this.createProductForm.get('pqty'); }
   
-
   onSubmit() {
     this.submitted = true;
     let productData = {
@@ -54,22 +54,18 @@ export class CreateComponent implements OnInit {
       pqty: this.pqty.value,
     };
 
-    if(!this.id){
-      this.invService.create(productData).subscribe((data) => {
-        console.log(data);
+    if(this.id){
+      productData["pid"] = this.id;
+      this.invService.update(productData).subscribe((data) => {
+        alert("Product updated successfully");
       });
     }
     else{
-      console.log(productData);
-    }
-  }
-  
-  deleteProduct(){
-    let confirmation = confirm("Are you sure you want to delete!");
-    if(confirmation){
-       this.invService.delete([this.id]).subscribe((data) => {
-        console.log(data);
+      this.invService.create(productData).subscribe((data) => {
+        alert("Product created successfully");
       });
     }
   }
+  
+
 }

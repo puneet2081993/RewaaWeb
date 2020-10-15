@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { Router , NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,17 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   title = 'Rewaa';
-  isUserLogin = false;
-  constructor(public authService: AuthService) {
-    this.isUserLogin = this.authService.isLoggedIn()
+  showNav : boolean = false;
+  
+  constructor(public authService: AuthService,private router: Router) { 
+    router.events.forEach((event) => {
+      if (event instanceof NavigationStart) {
+        if(this.authService.isLoggedIn() && event['url'] != '/login'){
+          this.showNav = true;
+        }else{
+          this.showNav = false;
+        }
+      }
+    });
   }
 }

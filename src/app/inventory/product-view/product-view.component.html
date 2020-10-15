@@ -1,33 +1,38 @@
 <h1 class="page-header">Product Details</h1>
 <a class="edit"  [routerLink]="['/product/edit',id]">Edit</a>
+<button type="submit" (click)="deleteProduct()" routerLink="/product/list" class="btn btn-primary" >Delete</button>
 <table style="width:100%">
     <tr>
         <th>Product ID:</th>
-        <td>Bill Gates</td>
+        <td>{{pdata.productID}}</td>
       </tr>
     <tr>
       <th>Product Name:</th>
-      <td>Bill Gates</td>
+      <td>{{pdata.productName}}</td>
     </tr>
     <tr>
       <th>Product Type:</th>
-      <td>555 77 854</td>
+      <td>{{pdata.productType}}</td>
     </tr>
     <tr>
       <th>Product Quantity:</th>
-      <td>555 77 855</td>
+      <td>{{pdata.quantity}}</td>
     </tr>
     <tr>
         <th>Created By:</th>
-        <td>555 77 855</td>
+        <td>{{pdata.created_by}}</td>
     </tr>
     <tr>
+      <th>Updated By:</th>
+      <td>{{pdata.updated_by}}</td>
+  </tr>
+    <tr>
         <th>Created At:</th>
-        <td>555 77 855</td>
+        <td>{{pdata.created_at}}</td>
     </tr>
     <tr>
         <th>Updated At:</th>
-        <td>555 77 855</td>
+        <td>{{pdata.updated_at}}</td>
     </tr>
   </table>
   

@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 
 export class InventoryService {
-  serverUrl = 'http://localhost:3000';
+  serverUrl = environment.baseUrl;
+  
   errorData: {};
   userDetails = JSON.parse(localStorage.getItem('currentUser'));
   constructor(private http: HttpClient) { }
-
   redirectUrl: string;
 
 create(productData) {
@@ -25,29 +25,20 @@ create(productData) {
   );
 }
 
-fetch() {
-  // productData["created_by"] = this.userDetails["username"];
-  // productData["orgID"] = this.userDetails["orgID"];
-
-  return this.http.get<any>(`${this.serverUrl}/product/fetch`)
-  .pipe(
-    catchError(this.handleError)
-  );
-} 
-
-fetchByID(id) {
-  // productData["created_by"] = this.userDetails["username"];
-  // productData["orgID"] = this.userDetails["orgID"];
-  return this.http.get<any>(`${this.serverUrl}/product/fetch/${id}`)
+fetch(pid?:any) {
+  let orgID = this.userDetails["orgID"];
+  let path = this.serverUrl+`/product/${orgID}`;
+  if(pid){
+    path += `?pid=${pid}`
+  }
+  return this.http.get<any>(`${path}`)
   .pipe(
     catchError(this.handleError)
   );
 } 
 
 update(productData) {
-  productData["created_by"] = this.userDetails["username"];
-  productData["orgID"] = this.userDetails["orgID"];
-
+  productData["updated_by"] = this.userDetails["username"];
   return this.http.post<any>(`${this.serverUrl}/product/update`, productData)
   .pipe(
     catchError(this.handleError)
@@ -60,6 +51,7 @@ delete(ids) {
     catchError(this.handleError)
   );
 }
+
 private handleError(error: HttpErrorResponse) {
   if (error.error instanceof ErrorEvent) {
 

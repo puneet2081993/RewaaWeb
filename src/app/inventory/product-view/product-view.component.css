@@ -24,3 +24,20 @@ button{
     cursor:pointer;
     margin-bottom: 20px;
 }
+
+.btn {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 7px 22px;
+    text-align: center;
+    font-size: 10px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .btn:hover {opacity: 1}
