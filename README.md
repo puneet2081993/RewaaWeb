@@ -1,4 +1,4 @@
-# Revaa
+# Rewaa Web
 This is hiring assignment for Rewaa Technologies.
 
 Implement a simple full-stack inventory management application as a SPA (Single Page Application) based on Angular and NodeJs. You need to create two different projects for that; Frontend and Backend.
@@ -36,7 +36,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-# RewaaWebUI
 
-# RewaaWeb
 
