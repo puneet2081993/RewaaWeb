@@ -15,18 +15,16 @@ export class ListViewComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   error :{};
-  pdata : [{"pid":"12","pname":"xxyyzz","selected":false}];x
+  pdata : [];
   productError: string;
 
   constructor(
-    private fb: FormBuilder,
     private router: Router,
     private invService: InventoryService
     ) { }
 
   ngOnInit(): void {
     this.invService.fetch().subscribe((data) => {
-      console.log(data);
       this.pdata = data;
     });
   }
@@ -47,7 +45,7 @@ export class ListViewComponent implements OnInit {
 
     if(confirmation){
       this.invService.delete(this.selectedProduct).subscribe((data) => {
-        console.log(data);
+          alert("deleted Successfully")
       });
       const redirect = '/';
       this.router.navigate([redirect]);

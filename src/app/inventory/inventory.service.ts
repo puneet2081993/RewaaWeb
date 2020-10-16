@@ -46,7 +46,8 @@ update(productData) {
 }
 
 delete(ids) {
-  return this.http.post<any>(`${this.serverUrl}/product/delete`, ids)
+  let data = {'pid':ids};
+  return this.http.post<any>(`${this.serverUrl}/product/delete`, data)
   .pipe(
     catchError(this.handleError)
   );
