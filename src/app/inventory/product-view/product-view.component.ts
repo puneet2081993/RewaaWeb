@@ -9,7 +9,7 @@ import { InventoryService } from '../inventory.service';
 })
 export class ProductViewComponent implements OnInit {
   id : string;
-  pdata : {};
+  pdata : any;
   
   constructor(
     private route: ActivatedRoute,

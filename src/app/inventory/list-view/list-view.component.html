@@ -1,11 +1,12 @@
 <h1>Products List</h1>
-<button type="submit" (click)="deleteProduct()" routerLink="/product/list" class="btn btn-primary">Delete</button>
+<button type="submit" *ngIf="selectedProduct.length > 0" (click)="deleteProduct()" routerLink="/product/list" class="btn btn-primary">Delete</button>
 <table border="1">
     <tr>
         <th></th>
         <th>Product ID</th>
         <th>Product Name</th>
         <th>Product Type</th>
+        <th>Created By</th>
         <th>Updated At</th>
     </tr>
     <tr *ngFor="let p of pdata" >
@@ -13,6 +14,7 @@
         <td><a [routerLink]="['/product',p.productID]" target="_blank">{{p.productID}}</a></td>
         <td>{{p.productName}}</td>
         <td>{{p.productType}}</td>
+        <td>{{p.created_by}}</td>
         <td>{{p.updated_at}}</td>
     </tr>
 </table>

@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
   returnUrl: string;
   error: {};
   productError: string;
-  pdata = {};
+  pdata :any = {};
   
   constructor(
     private fb: FormBuilder,
@@ -32,7 +32,7 @@ export class CreateComponent implements OnInit {
   
     if(this.id){
         this.invService.fetch(this.id).subscribe((data) => {
-        this.pdata = data[0];
+          this.pdata = data[0];
       });
     }
     this.createProductForm = this.fb.group({
